@@ -4,7 +4,7 @@ import lottie from 'lottie-web'
 import cryrickanimation from '../../animations/cryrickanimation.json'
 
 const Rick = styled('div')({
-  position: 'absolute',
+  position: 'fixed',
   bottom: -10,
   left: 0,
 })
