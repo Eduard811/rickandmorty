@@ -5,6 +5,7 @@ export interface CharactersState {
   isFetching: boolean
   error: null | string
   page: number
+  sortBy: string
 }
 
 export enum CharactersActionTypes {
@@ -13,6 +14,7 @@ export enum CharactersActionTypes {
   FETCH_CHARACTERS_ERROR = 'FETCH_CHARACTERS_ERROR',
   DELETE_CHARACTER = 'DELETE_CHARACTER',
   ADD_OR_DELETE_FAVORITE = 'ADD_OR_DELETE_FAVORITE',
+  SORT_CHARACTERS = 'SORT_CHARACTERS',
 }
 
 interface FetchCharacters {
@@ -39,9 +41,15 @@ interface AddOrDeleteFavorite {
   id: number
 }
 
+interface SortCharacters {
+  type: CharactersActionTypes.SORT_CHARACTERS
+  payload: string
+}
+
 export type CharactersAction =
   | FetchCharacters
   | FetchCharactersSuccess
   | FetchCharactersError
   | DeleteCharacter
   | AddOrDeleteFavorite
+  | SortCharacters

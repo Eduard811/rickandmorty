@@ -22,3 +22,7 @@ export const deleteCharacterAC = (id: number) => (dispatch: Dispatch<CharactersA
 export const AddOrDeleteFavoriteAC = (id: number) => (dispatch: Dispatch<CharactersAction>) => {
   dispatch({ type: CharactersActionTypes.ADD_OR_DELETE_FAVORITE, id })
 }
+
+export const sortCharactersAC = (sortBy: string) => (dispatch: Dispatch<CharactersAction>) => {
+  dispatch({ type: CharactersActionTypes.SORT_CHARACTERS, payload: sortBy })
+}

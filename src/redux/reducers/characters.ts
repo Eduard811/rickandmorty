@@ -5,6 +5,7 @@ const initialState: CharactersState = {
   isFetching: false,
   error: null,
   page: 1,
+  sortBy: 'All',
 }
 
 export const CharactersReducer = (state = initialState, action: CharactersAction): CharactersState => {
@@ -46,6 +47,11 @@ export const CharactersReducer = (state = initialState, action: CharactersAction
 
           return character
         }),
+      }
+    case CharactersActionTypes.SORT_CHARACTERS:
+      return {
+        ...state,
+        sortBy: action.payload,
       }
     default:
       return state

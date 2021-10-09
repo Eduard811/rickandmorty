@@ -29,7 +29,7 @@ const Container = styled('div')(({ theme }) => ({
 }))
 
 export default function Characters() {
-  const { characters, isFetching, page } = useTypedSelector((state) => state.characters)
+  const { characters, isFetching, page, sortBy } = useTypedSelector((state) => state.characters)
   const { getCharactersAC } = useActions()
 
   useEffect(() => {
@@ -46,7 +46,13 @@ export default function Characters() {
           ? Array(20)
               .fill(0)
               .map((_, index) => <CharacterSkeleton key={index} />)
-          : characters.map((character) => <Character key={character.id} {...character} />)}
+          : characters.map((character) =>
+              sortBy === 'All' ? (
+                <Character key={character.id} {...character} />
+              ) : (
+                character.isFavorite && <Character key={character.id} {...character} />
+              )
+            )}
       </Container>
     </>
   )

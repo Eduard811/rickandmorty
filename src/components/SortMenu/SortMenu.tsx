@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
+import { useActions } from '../../hook/useAction'
 import MenuItem from '@mui/material/MenuItem'
 import Menu from '@mui/material/Menu'
-import { Button } from '@mui/material'
+import Button from '@mui/material/Button'
 
 const options = ['All', 'My favorites']
 
 export default function SortMenu() {
+  const { sortCharactersAC } = useActions()
+
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const [selectedIndex, setSelectedIndex] = useState(0)
   const open = Boolean(anchorEl)
@@ -15,6 +18,7 @@ export default function SortMenu() {
 
   const handleMenuItemClick = (event: React.MouseEvent<HTMLElement>, index: number) => {
     setSelectedIndex(index)
+    sortCharactersAC(options[index])
     setAnchorEl(null)
   }
 
