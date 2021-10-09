@@ -6,6 +6,7 @@ import { styled } from '@mui/material/styles'
 import Character from '../Character/Character'
 import CharacterSkeleton from '../Character/CharacterSkeleton'
 import SortMenu from '../SortMenu/SortMenu'
+import CryRick from '../CryRick/CryRick'
 
 const Header = styled('div')({
   display: 'flex',
@@ -42,17 +43,22 @@ export default function Characters() {
         <SortMenu />
       </Header>
       <Container>
-        {isFetching
-          ? Array(20)
-              .fill(0)
-              .map((_, index) => <CharacterSkeleton key={index} />)
-          : characters.map((character) =>
-              sortBy === 'All' ? (
-                <Character key={character.id} {...character} />
-              ) : (
-                character.isFavorite && <Character key={character.id} {...character} />
-              )
-            )}
+        {isFetching ? (
+          Array(20)
+            .fill(0)
+            .map((_, index) => <CharacterSkeleton key={index} />)
+        ) : characters.length === 0 ||
+          (sortBy === 'My favorites' && characters.every((character) => !character.isFavorite)) ? (
+          <CryRick />
+        ) : (
+          characters.map((character) =>
+            sortBy === 'All' ? (
+              <Character key={character.id} {...character} />
+            ) : (
+              character.isFavorite && <Character key={character.id} {...character} />
+            )
+          )
+        )}
       </Container>
     </>
   )
